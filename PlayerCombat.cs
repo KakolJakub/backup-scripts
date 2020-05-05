@@ -7,7 +7,8 @@ public class PlayerCombat : MonoBehaviour
     public Animator animate;
 	public PlayerHealthBar healthBar;
 	public Tint tint;
-	
+	public LayerMask enemyLayers;
+
 	public int maxHealth =100;
 	int currentHealth;
 	
@@ -16,13 +17,10 @@ public class PlayerCombat : MonoBehaviour
 	public int attackDamage=10;
 	public int critChance=80;
 	public int critDamage=30;
-	public LayerMask enemyLayers;
 	
 	public int noOfClicks=0;
 	float lastClickedTime;
-	//public float comboDelay;
 	
-	//public bool canCombo=false;
 	bool canAttack=true;
 	bool block=false;
 	
@@ -35,27 +33,14 @@ public class PlayerCombat : MonoBehaviour
 		currentHealth=maxHealth;
 		healthBar.SetMaxHealth(maxHealth);
 		attackDelay=0.5f;
-		//comboDelay=0.4f;
 		CanAttack();
 		block=false;
-		//canCombo=false;
 	}
 	
     void Update()
     {	
-		/*if (Time.time-lastClickedTime>=comboDelay)
-		{
-			ResetCombo();
-			canCombo=false;
-		}
-		if (Time.time-lastClickedTime<comboDelay)
-		{
-			canCombo=true;
-		}	*/		
-		//Debug.Log(block);
 		if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //lastClickedTime=Time.time;
 			if(canAttack)
 			{
 				noOfClicks++;
@@ -64,7 +49,6 @@ public class PlayerCombat : MonoBehaviour
 			{
 				animate.SetBool("Attack1",true);
 			}
-			//Attack();
         }
 		if(Input.GetMouseButton(1))
 		{
@@ -95,28 +79,6 @@ public class PlayerCombat : MonoBehaviour
 		
 		
     }
-    /*void Attack()
-    {
-        if(noOfClicks==1)
-		{
-			CantAttack();
-			animate.SetBool("Attack1",true);
-			Debug.Log("atak1");
-		}
-		if((noOfClicks==2)&&(canCombo))
-		{
-			CantAttack();
-			animate.SetBool("Attack2",true);
-			Debug.Log("atak2");
-		}
-		if((noOfClicks>=3)&&(canCombo))
-		{
-			CantAttack();
-			animate.SetBool("Attack3",true);
-			ResetCombo();
-			Debug.Log("atak3");
-		}	
-    }*/
 	public void attack1end()
 	{
 		animate.SetBool("Attack1",false);
@@ -144,10 +106,6 @@ public class PlayerCombat : MonoBehaviour
 		{
 		animate.SetBool("Return",true);
 		}
-		/*else
-		{
-		animate.SetBool("Attack2",false);
-		}*/
 	}
 	public void attack3end()
 	{

@@ -19,11 +19,11 @@ public class EnemyHealthBar : MonoBehaviour
 	}
 	void Update()
 	{
-	if (slider.value==0)
-	{
-		GameObject Bar=GameObject.Find("EnemyHealthBar");
-		Destroy(Bar);
-		this.enabled=false;
-	}
+		if (slider.value==0)
+		{
+			GameObject Bar=GameObject.Find("EnemyHealthBar");
+			Destroy(Bar);
+			this.enabled=false;
+		}
 	}
 }
