@@ -11,7 +11,12 @@ public class PlayerCombat : MonoBehaviour
 
 	public int maxHealth =100;
 	int currentHealth;
-	
+
+	int maxStamina = 30;
+	int currentStamina;
+	int blockCost = 1;
+	float blockTimer = 0.5f;
+
 	public Transform AttackPoint;
 	public float attackRange=0.5f;
 	public int attackDamage=10;
@@ -32,7 +37,11 @@ public class PlayerCombat : MonoBehaviour
 	{
 		currentHealth=maxHealth;
 		healthBar.SetMaxHealth(maxHealth);
-		attackDelay=0.5f;
+
+		currentStamina = maxStamina;
+		staminaBar.SetMaxStamina(maxStamina);
+
+		attackDelay =0.5f;
 		CanAttack();
 		block=false;
 	}
@@ -56,6 +65,9 @@ public class PlayerCombat : MonoBehaviour
 			animate.SetBool("Attacking",true);
 			animate.SetBool("Blocking", true);
 			attackTimer=attackDelay;
+
+			currentStamina -= blockCost;
+			staminaBar.SetStamina(currentStamina);
 		}
 		else
 		{
@@ -76,9 +88,26 @@ public class PlayerCombat : MonoBehaviour
 			animate.SetBool("Attacking",true);
 			attackTimer=attackDelay;
 		}
-		
-		
-    }
+		if (blockTimer > 0)
+		{
+			blockTimer -= Time.deltaTime;
+		}
+		if (blockTimer <= 0)
+		{
+			if (currentStamina < maxStamina)
+			{
+				currentStamina++;
+			}
+			staminaBar.SetStamina(currentStamina);
+			blockTimer = 1;
+		}
+		if (currentStamina < 0)
+		{
+			currentStamina = 0;
+		}
+
+
+	}
 	public void attack1end()
 	{
 		animate.SetBool("Attack1",false);
