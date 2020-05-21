@@ -1,2 +1,2 @@
 # backup-scripts
-tbd
+Backup C# scripts for a Unity project in case of data loss.
