@@ -14,4 +14,4 @@ Project is created with:
 
 ## Inspiration
 Scripts are based on Unity Tutorial from Brackeys: 
-https://github.com/Brackeys?q=2d&type=&language=
+https://github.com/Brackeys
