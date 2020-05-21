@@ -13,5 +13,5 @@ Project is created with:
 * Unity version: 2019.3.6f1
 
 ## Inspiration
-Scripts are based on Unity Tutorial from Brackeys: 
+Scripts were based on the Unity Tutorial from Brackeys: 
 https://github.com/Brackeys
